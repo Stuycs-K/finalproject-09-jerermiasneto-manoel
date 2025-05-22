@@ -2,21 +2,23 @@
 
 ## Group Members:
 
-names here.(CHANGE THIS!!!!!)
+Manoel J-N
        
 # Intentions:
 
-A statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
+Create a Processing Project that will hide a black & white image inside of a larger image, as well as reveal hidden messages created with the program
     
 # Intended usage:
 
-A description as to how the project will be used (describe the user interface). (CHANGE THIS!!!!!)
+## encode:
+    makefile, tags to add a image to enode and the image to encode into
+
+## decode:
+    makefile, tags to add the image that will be decoded, will then popup the decoded image
   
 # Technical Details:
 
-(CHANGE THIS!!!!!)
-
-A description of your technical design. This should include: 
+Uses processing, bit modifying, 
    
 How you will be using the topics covered in class in the project.
      
