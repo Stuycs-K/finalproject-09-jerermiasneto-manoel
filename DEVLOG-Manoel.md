@@ -8,4 +8,4 @@ This document must be updated daily every time you finish a work session.
 Created Processing Project, filled out proposal.
 
 ### 2024-05-23 - Processing Setup
-Expanded description including how much time was spent on task.
+Worked on parsing args and other setup in order to actually to do stegonagraphy

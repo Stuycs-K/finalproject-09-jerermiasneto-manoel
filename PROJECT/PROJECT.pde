@@ -8,6 +8,8 @@ final static int NRMLZTN = 1;
 //default settings
 String InputShown = "inputshown.png";
 String InputHidden = "inputhidden.png";
+PImage in1;
+PImage in2;
 String Output = "output.png";
 int MODE1 = 0;
 int MODE2 = 0;
@@ -22,15 +24,10 @@ void draw(){
 
 void setup(){
   settings();
-  check();
-  
-}
-void check(){
   
 }
 
 void settings() {
-  size(1200, 600);
   if (args == null){
     println("no args provided");
     println("flags encode: -e -i IMAGETOHIDE -h IMAGETOHIDEINPUTIN -o OUPUTFILENAME -m MODE");
@@ -39,6 +36,12 @@ void settings() {
   }
   if(!parseArgs()){
     println("parsing failure (bruh)");
+    return;
+  }
+  in1 = loadImage(InputShown);
+  in2 = loadImage(InputHidden);
+  if(in2.height > in1.height || in2.width > in1.width){
+    println("ImageHidden (-i) is larger than ImageShown (-h)");
     return;
   }
 }
