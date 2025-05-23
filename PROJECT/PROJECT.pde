@@ -9,10 +9,12 @@ final static int NRMLZTN = 1;
 String InputShown = "inputshown.png";
 String InputHidden = "inputhidden.png";
 String Output = "output.png";
-String 
+int MODE1 = 0;
+int MODE2 = 0;
+int DISPLAYMODE = 0;
 
 void draw(){
-  if(DISPLAYMODE.equalsIgnoreCase("false")){
+  if(DISPLAYMODE == 0){
     exit();
     return;
   }
@@ -20,4 +22,10 @@ void draw(){
 
 void setup() {
   size(1200, 600);
+  if (args == null){
+    println("no args provided");
+    println("flags encode: -e -i INPUTFILENAME -h IMAGETOHIDEINPUTIN -o OUPUTFILENAME -m MODE");
+    println("flags decode: -d -i INPUTFILENAME -o OUTPUTFILENAME -m MODE");
+    return;
+  }
 }
