@@ -11,20 +11,19 @@ Create a Processing Project that will hide a black & white image inside of a lar
 # Intended usage:
 
 ## encode:
-    makefile, tags to add a image to enode and the image to encode into
+makefile, tags to add a image to enode and the image to encode into
 
 ## decode:
-    makefile, tags to add the image that will be decoded, will then popup the decoded image
+makefile, tags to add the image that will be decoded, will then popup the decoded image
   
 # Technical Details:
 
-Uses processing, bit modifying, 
+Uses processing, bit modifying/shifting
    
-How you will be using the topics covered in class in the project.
-     
-How you are breaking down the project and who is responsible for which parts.
+Using bit shifting to hide an black/white image in the last 3 bytes of the each of the rgb channels
+processing to modify the image and save modified images
   
     
 # Intended pacing:
 
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+start processing- setup tags
