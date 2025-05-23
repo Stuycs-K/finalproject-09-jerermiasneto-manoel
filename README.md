@@ -17,6 +17,6 @@ How does the user interact with this program? (CHANGE THIS!!!!!)
 
 ### Resources/ References:
 
-Mr. K's Encoder / Decoder templates (args)
+Mr. K's Encoder / Decoder templates
 processing.org (Documentation)
 
