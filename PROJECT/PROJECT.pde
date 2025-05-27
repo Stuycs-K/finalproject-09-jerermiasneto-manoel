@@ -10,21 +10,50 @@ String InputShown = "inputshown.png";
 String InputHidden = "inputhidden.png";
 PImage in1;
 PImage in2;
+PImage out;
 String Output = "output.png";
 int MODE1 = 0;
 int MODE2 = 0;
-int DISPLAYMODE = 0;
+int DISPLAYMODE = 1;
 
 void draw(){
   if(DISPLAYMODE == 0){
     exit();
     return;
   }
+  
+}
+void encode(){
+  in2.filter(GRAY);
+  in1.loadPixels();
+  int[][] in1arr = new int[in1.height][in1.width];
+  int[][] in2arr = new int[in2.height][in2.width];
+  for(int i =0; i < in1.height; i ++){
+    for (int k = 0; k < in1.width; k ++){
+      in1arr[i][k] = 
+    }
+  }
+}
+void decode(){
+  println("guh");
 }
 
+
+
 void setup(){
-  settings();
-  
+  in1 = loadImage(InputShown);
+  in2 = loadImage(InputHidden);
+  windowResize(in1.width, in1.height);
+  if(in2.height > in1.height || in2.width > in1.width){
+    println("ImageHidden (-i) is larger than ImageShown (-h)");
+    exit();
+  }
+  if(MODE1 == ENCODE){
+    encode();
+  }
+  else{
+    decode();
+  }
 }
 
 void settings() {
@@ -32,18 +61,12 @@ void settings() {
     println("no args provided");
     println("flags encode: -e -i IMAGETOHIDE -h IMAGETOHIDEINPUTIN -o OUPUTFILENAME -m MODE");
     println("flags decode: -d -i INPUT -o OUTPUTFILENAME -m MODE");
-    return;
+    //return;
   }
-  if(!parseArgs()){
-    println("parsing failure (bruh)");
-    return;
-  }
-  in1 = loadImage(InputShown);
-  in2 = loadImage(InputHidden);
-  if(in2.height > in1.height || in2.width > in1.width){
-    println("ImageHidden (-i) is larger than ImageShown (-h)");
-    return;
-  }
+  //if(!parseArgs()){
+    //println("parsing failure (bruh)");
+    //return;
+  //}
 }
 
 boolean parseArgs(){
