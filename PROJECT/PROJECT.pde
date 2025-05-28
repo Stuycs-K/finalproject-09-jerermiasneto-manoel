@@ -6,8 +6,8 @@ final static int BW = 0;
 final static int NRMLZTN = 1;
 
 //default settings
-String InputShown = "inputshown.png";
-String InputHidden = "inputhidden.png";
+String InputShown = "input.png";
+String InputHidden = "input2.png";
 PImage in1;
 PImage in2;
 PImage out;
@@ -21,21 +21,111 @@ void draw(){
     exit();
     return;
   }
-  
+  image(in1, 0 ,0);
 }
-void encode(){
-  in2.filter(GRAY);
-  in1.loadPixels();
-  int[][] in1arr = new int[in1.height][in1.width];
-  int[][] in2arr = new int[in2.height][in2.width];
-  for(int i =0; i < in1.height; i ++){
-    for (int k = 0; k < in1.width; k ++){
-      in1arr[i][k] = 
+int getpixel(int x, int y, int h){
+  return y * h + x;
+}
+int[] tobitbw(int in){
+  int[] out = new int[9];
+  out[0] = 0;
+  out[1] = in&128;
+  out[2] = in&64;
+  out[3] = in&32;
+  out[4] = in&16;
+  out[5] = in&8;
+  out[6] = in&4;
+  out[7] = in&2;
+  out[8] = in&1;
+  for(int i = 0; i < 9; i ++){
+    if(out[i] > 0){
+      out[i] = 1;
     }
   }
+  return out;
+}
+
+int toint(int[] in){
+  int c =  (in[1]*128) + (in[2]*64) + (in[3]*32) + (in[4]*16) + (in[5]*8) + (in[6]*4) + (in[7]*2) + (in[8]*1);
+  return c;
+}
+
+void encode(){
+  if(MODE2 == BW){
+    in2.filter(GRAY);
+    in1.loadPixels();
+    in2.loadPixels();
+    for(int i = (in1.height - in2.height)/2, i2 = 0; i < (in1.height - in2.height)/2 + in2.height; i++, i2 ++){
+      for(int k = (in1.width - in2.width)/2, k2 = 0; k < (in1.width - in2.width)/2 + in2.width; k++, k2 ++){
+        //extract value from in2 pixel
+        //turn it into 3 seperate values that can be stored in red green and bluc of in1
+        //put it in
+        int pixelval = (int)red(color(in2.pixels[getpixel(k2, i2, in2.width)]));
+        // ^ value of the BW pixel
+        int[] valarr = tobitbw(pixelval);
+        // ^ bit array of the BW pixel
+        int pixelvalr = (int)red(color(in1.pixels[getpixel(k, i, in1.width)]));
+        int pixelvalg = (int)green(color(in1.pixels[getpixel(k, i, in1.width)]));
+        int pixelvalb = (int)blue(color(in1.pixels[getpixel(k, i, in1.width)]));
+        //color values of in1 pixel (to hide the BW bits of color in)
+        int []valarrr = tobitbw(pixelvalr);
+        int []valarrg = tobitbw(pixelvalg);
+        int []valarrb = tobitbw(pixelvalb);
+        valarrr[6] = valarr[0];
+        valarrr[7] = valarr[1];
+        valarrr[8] = valarr[2];
+        valarrg[6] = valarr[3];
+        valarrg[7] = valarr[4];
+        valarrg[8] = valarr[5];
+        valarrb[6] = valarr[6];
+        valarrb[7] = valarr[7];
+        valarrb[8] = valarr[8];
+        //inscribing the bw value into the R,G,B values
+        pixelvalr = toint(valarrr);
+        pixelvalg = toint(valarrg);
+        pixelvalb = toint(valarrb);
+        //turning it back into rgb values
+        in1.pixels[getpixel(k, i, in1.width)] = color(pixelvalr, pixelvalg,pixelvalb);
+      }
+    }  
+  }
+  else{
+    
+  }
+  in1.updatePixels();
+  in1.save(Output);
 }
 void decode(){
-  println("guh");
+  if(MODE2 == BW){
+    in1.loadPixels();
+    for(int i = 0; i < (in1.pixels).length; i ++){
+      int pixelvalr = (int)red(color(in1.pixels[i]));
+      int pixelvalg = (int)green(color(in1.pixels[i]));
+      int pixelvalb = (int)blue(color(in1.pixels[i]));
+      //getting rgb vals
+      int []valarrr = tobitbw(pixelvalr);
+      int []valarrg = tobitbw(pixelvalg);
+      int []valarrb = tobitbw(pixelvalb);
+      //getting bits of rgb values
+      int[] valarr = new int[9];
+      valarr[0]=valarrr[6];
+      valarr[1]=valarrr[7];
+      valarr[2]=valarrr[8];
+      valarr[3]=valarrg[6];
+      valarr[4]=valarrg[7];
+      valarr[5]=valarrg[8];
+      valarr[6]=valarrb[6];
+      valarr[7]=valarrb[7];
+      valarr[8]=valarrb[8];
+      int pixelval = toint(valarr);
+      in1.pixels[i] = color(pixelval);
+    }
+  }
+  else{
+    
+  }
+  in1.updatePixels();
+  in1.save(Output);
 }
 
 
