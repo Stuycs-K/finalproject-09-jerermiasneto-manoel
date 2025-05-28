@@ -3,7 +3,7 @@ import java.util.Arrays;
 final static int ENCODE = 0;
 final static int DECODE = 1;
 final static int BW = 0;
-final static int NRMLZTN = 1;
+final static int COLOR = 1;
 
 //default settings
 String InputShown = "input.png";
@@ -12,8 +12,8 @@ PImage in1;
 PImage in2;
 PImage out;
 String Output = "output.png";
-int MODE1 = 0;
-int MODE2 = 0;
+int MODE1 = 1;
+int MODE2 = 1;
 int DISPLAYMODE = 1;
 
 void draw(){
@@ -89,8 +89,38 @@ void encode(){
       }
     }  
   }
-  else{
-    
+  else if (MODE2 == COLOR){
+    in2.loadPixels();
+    in1.loadPixels();
+    for(int i = (in1.height - in2.height)/2, i2 = 0; i < (in1.height - in2.height)/2 + in2.height; i++, i2 ++){
+      for(int k = (in1.width - in2.width)/2, k2 = 0; k < (in1.width - in2.width)/2 + in2.width; k++, k2 ++){
+        int pixelvalr = (int)red(color(in2.pixels[getpixel(k2, i2, in2.width)]))/32;
+        int pixelvalg = (int)green(color(in2.pixels[getpixel(k2, i2, in2.width)]))/32;
+        int pixelvalb = (int)blue(color(in2.pixels[getpixel(k2, i2, in2.width)]))/32;
+        int[] valarrr = tobitbw(pixelvalr);
+        int[] valarrg = tobitbw(pixelvalg);
+        int[] valarrb = tobitbw(pixelvalb);
+        int bigvalr = (int)red(color(in1.pixels[getpixel(k, i, in1.width)]));
+        int bigvalb = (int)blue(color(in1.pixels[getpixel(k, i, in1.width)]));
+        int bigvalg = (int)green(color(in1.pixels[getpixel(k, i, in1.width)]));
+        int[] bigarrr = tobitbw(bigvalr);
+        int[] bigarrg = tobitbw(bigvalg);
+        int[] bigarrb = tobitbw(bigvalb);
+        bigarrr[6] = valarrr[0];
+        bigarrr[7] = valarrr[1];
+        bigarrr[8] = valarrr[2];
+        bigarrg[6] = valarrg[0];
+        bigarrg[7] = valarrg[1];
+        bigarrg[8] = valarrg[2];
+        bigarrb[6] = valarrb[0];
+        bigarrb[7] = valarrb[1];
+        bigarrb[8] = valarrb[2];
+        pixelvalr = toint(bigarrr);
+        pixelvalg = toint(bigarrg);
+        pixelvalb = toint(bigarrb);
+        in1.pixels[getpixel(k, i, in1.width)] = color(pixelvalr, pixelvalg,pixelvalb);
+      }
+    }
   }
   in1.updatePixels();
   in1.save(Output);
@@ -121,8 +151,35 @@ void decode(){
       in1.pixels[i] = color(pixelval);
     }
   }
-  else{
-    
+  else if (MODE2 == COLOR){
+    for(int i = 0 ; i < (in1.pixels).length; i++){
+      int pixelvalr = (int)red(color(in1.pixels[i]));
+      int pixelvalg = (int)green(color(in1.pixels[i]));
+      int pixelvalb = (int)blue(color(in1.pixels[i]));
+      //getting rgb vals
+      int []valarrr = tobitbw(pixelvalr);
+      int []valarrg = tobitbw(pixelvalg);
+      int []valarrb = tobitbw(pixelvalb);
+      int[] newr = new int[9];
+      int[] newg = new int[9];
+      int[] newb = new int[9];
+      newr[0] = valarrr[6];
+      newr[1] = valarrr[7];
+      newr[2] = valarrr[8];
+      newg[0] = valarrg[6];
+      newg[1] = valarrg[7];
+      newg[2] = valarrg[8];
+      newb[0] = valarrb[6];
+      newb[1] = valarrb[7];
+      newb[2] = valarrb[8];
+      int valr = toint(newr);
+      int valg = toint(newg);
+      int valb = toint(newb);
+      valr *= 32;
+      valg *=32;
+      valb *= 32;
+      in1.pixels[i] = color(valr, valg,valb);
+    }
   }
   in1.updatePixels();
   in1.save(Output);
@@ -199,11 +256,11 @@ boolean parseArgs(){
         if((args[i+1].toLowerCase()).equals("bw") || (args[i+1].toLowerCase()).equals("blackwhite")){
           MODE2 = BW;
         }
-        else if((args[i+1].toLowerCase()).equals("nrmlztn") || (args[i+1].toLowerCase()).equals("normalization")){
-          MODE2 = NRMLZTN;
+        else if((args[i+1].toLowerCase()).equals("color") || (args[i+1].toLowerCase()).equals("clr")){
+          MODE2 = COLOR;
         }
         else{
-          println ("-m requires mode as next argument (bw / nrmztn)");
+          println ("-m requires mode as next argument (bw / clr)");
           return false;
         }
       }
