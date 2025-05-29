@@ -50,6 +50,12 @@ int toint(int[] in){
   return c;
 }
 
+void printarr(int[] arr){
+  for(int i = 0; i < arr.length; i ++){
+    print(arr[i]);
+  }
+  println("");
+}
 void encode(){
   if(MODE2 == BW){
     in2.filter(GRAY);
@@ -94,9 +100,9 @@ void encode(){
     in1.loadPixels();
     for(int i = (in1.height - in2.height)/2, i2 = 0; i < (in1.height - in2.height)/2 + in2.height; i++, i2 ++){
       for(int k = (in1.width - in2.width)/2, k2 = 0; k < (in1.width - in2.width)/2 + in2.width; k++, k2 ++){
-        int pixelvalr = (int)red(color(in2.pixels[getpixel(k2, i2, in2.width)]))/32;
-        int pixelvalg = (int)green(color(in2.pixels[getpixel(k2, i2, in2.width)]))/32;
-        int pixelvalb = (int)blue(color(in2.pixels[getpixel(k2, i2, in2.width)]))/32;
+        int pixelvalr = (int)red(color(in2.pixels[getpixel(k2, i2, in2.width)]));
+        int pixelvalg = (int)green(color(in2.pixels[getpixel(k2, i2, in2.width)]));
+        int pixelvalb = (int)blue(color(in2.pixels[getpixel(k2, i2, in2.width)]));
         int[] valarrr = tobitbw(pixelvalr);
         int[] valarrg = tobitbw(pixelvalg);
         int[] valarrb = tobitbw(pixelvalb);
@@ -160,24 +166,17 @@ void decode(){
       int []valarrr = tobitbw(pixelvalr);
       int []valarrg = tobitbw(pixelvalg);
       int []valarrb = tobitbw(pixelvalb);
-      int[] newr = new int[9];
-      int[] newg = new int[9];
-      int[] newb = new int[9];
-      newr[0] = valarrr[6];
-      newr[1] = valarrr[7];
-      newr[2] = valarrr[8];
-      newg[0] = valarrg[6];
-      newg[1] = valarrg[7];
-      newg[2] = valarrg[8];
-      newb[0] = valarrb[6];
-      newb[1] = valarrb[7];
-      newb[2] = valarrb[8];
-      int valr = toint(newr);
-      int valg = toint(newg);
-      int valb = toint(newb);
-      valr *= 32;
-      valg *=32;
-      valb *= 32;
+      for(int k = 0; k < 6; k ++){
+        valarrr[k] = 0;
+        valarrg[k] = 0;
+        valarrb[k] = 0;
+      }
+      int valr = toint(valarrr);
+      int valg = toint(valarrg);
+      int valb = toint(valarrb);
+      valr = (valr ) * 128* 2/ 3;
+      valg = (valg ) * 128* 2/ 3;
+      valb = (valb ) * 128 * 2/ 3;
       in1.pixels[i] = color(valr, valg,valb);
     }
   }
