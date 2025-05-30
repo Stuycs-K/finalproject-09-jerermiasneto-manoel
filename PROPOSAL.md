@@ -25,6 +25,8 @@ Uses processing, bit modifying/shifting
 Using bit shifting to hide an black/white image in the last 3 bytes of the each of the rgb channels
 processing to modify the image and save modified images
 
+Also uses bit shifting to hide a COLOR image inside of another image. worse color resolution (3 bits per color instead of 8). still uses processing to modify and save image.
+
 
   
     

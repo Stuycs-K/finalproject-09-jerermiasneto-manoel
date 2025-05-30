@@ -10,5 +10,8 @@ Created Processing Project, filled out proposal.
 ### 2025-05-23 - Processing Setup
 Worked on parsing args and other setup in order to actually to do stegonagraphy
 
-### 2025-05-28 - ENCODE BW DECODE BW
+### 2025-05-27 - ENCODE BW DECODE BW
 started (and completed) both of the encode and decode for black and white
+
+### 2025-05-28 - ENCODE COLOR DECODE COLOR
+started (and completed) both encode and decode for color
