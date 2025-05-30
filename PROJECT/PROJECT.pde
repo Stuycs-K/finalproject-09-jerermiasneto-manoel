@@ -112,15 +112,15 @@ void encode(){
         int[] bigarrr = tobitbw(bigvalr);
         int[] bigarrg = tobitbw(bigvalg);
         int[] bigarrb = tobitbw(bigvalb);
-        bigarrr[6] = valarrr[0];
-        bigarrr[7] = valarrr[1];
-        bigarrr[8] = valarrr[2];
-        bigarrg[6] = valarrg[0];
-        bigarrg[7] = valarrg[1];
-        bigarrg[8] = valarrg[2];
-        bigarrb[6] = valarrb[0];
-        bigarrb[7] = valarrb[1];
-        bigarrb[8] = valarrb[2];
+        bigarrr[6] = valarrr[1];
+        bigarrr[7] = valarrr[2];
+        bigarrr[8] = valarrr[3];
+        bigarrg[6] = valarrg[1];
+        bigarrg[7] = valarrg[2];
+        bigarrg[8] = valarrg[3];
+        bigarrb[6] = valarrb[1];
+        bigarrb[7] = valarrb[2];
+        bigarrb[8] = valarrb[3];
         pixelvalr = toint(bigarrr);
         pixelvalg = toint(bigarrg);
         pixelvalb = toint(bigarrb);
@@ -144,8 +144,8 @@ void decode(){
       int []valarrb = tobitbw(pixelvalb);
       //getting bits of rgb values
       int[] valarr = new int[9];
-      valarr[0]=valarrr[6];
-      valarr[1]=valarrr[7];
+      valarr[1]=valarrr[6];
+      valarr[2]=valarrr[7];
       valarr[2]=valarrr[8];
       valarr[3]=valarrg[6];
       valarr[4]=valarrg[7];
@@ -174,9 +174,9 @@ void decode(){
       int valr = toint(valarrr);
       int valg = toint(valarrg);
       int valb = toint(valarrb);
-      valr = (valr ) * 128* 2/ 3;
-      valg = (valg ) * 128* 2/ 3;
-      valb = (valb ) * 128 * 2/ 3;
+      valr = (valr ) * 36;
+      valg = (valg ) * 36;
+      valb = (valb ) * 36;
       in1.pixels[i] = color(valr, valg,valb);
     }
   }
