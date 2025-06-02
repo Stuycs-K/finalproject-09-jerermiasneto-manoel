@@ -1,3 +1,41 @@
-Script:
+# Image Stenography
+##### Manoel   
+    
+### What is Stenography?
+Steganography is the practice of hiding a secret message in something that is not secret. 
+There are many different forms of stenography in the digital world:
+- Image
+- Video
+- Audio
+- Text
 
-1) history of stenagrtophy (however you spell it)
+I will be focusing on Image Steganography; specifically one version of it: Hiding an image inside of another image.
+
+### History Of Stenography:
+
+Origin of the word stenography dates back to Ancient Greece, in "stegano" and "grafia", and together this means “secret writing”.
+Ancient Greeks would carve messages on the wood of wax tablets without wax, and then cover the message with wax to make it appear as to no message exists. Romans would also use “invisible ink” to write secret messages on other, less secretive documents.
+
+### My Program: Overview / Purpose:
+
+My program is designed to hide an image inside another image by changing the least significant bit in the Red Green and Blue values of a pixel in an image with values, either to make a 8 bit black and white image or a 9 bit color image (3 bits per color channel).
+
+### Encode Black and White:
+#### Usage:
+Use if you are ok with the final image once decoded being black and white.
+flags: -e -i IMAGETOHIDE -h IMAGETOHIDEINPUTIN -o OUPUTFILENAME -m BW
+if you want the image to be displayed use -v
+
+#### Setup:
+To prepare for black and white image encoding, my program first changes the image to hide into a monochrome image using filter() in processing
+Then, the image to hide will be centered on top of the image that will appear unchanged at the end.
+
+#### Encoding:
+Then, the program will go over every single pixel of the (now) centered image.
+On each pixel, the program will read the brightness of the pixel and split the 8 bytes into 3 3 byte numbers
+For example, a pixel with a value of 125 (01111101) would become 001 111 101.
+Then, each of the three binary values will be put into the least signigicant bits in the red, green, and blue channels of the image that will appear unchanged.
+The program continues until all pixels are converted.
+
+#### Decoding:
+The program will run over 

@@ -12,8 +12,8 @@ PImage in1;
 PImage in2;
 PImage out;
 String Output = "output.png";
-int MODE1 = 1;
-int MODE2 = 1;
+int MODE1 = 0;
+int MODE2 = 0;
 int DISPLAYMODE = 1;
 
 void draw(){
