@@ -45,8 +45,14 @@ For example, a pixel with a value of 125 (01111101) would become 001 111 101.
 Then, each of the three binary values will be put into the least signigicant bits in the red, green, and blue channels of the image that will appear unchanged.
 The program continues until all pixels covered by the image to hide are converted.
 
+Output:
+
+![secret](assets/hiddenBW.png)
+
 #### Decoding:
 The program will run over every single pixel and basically undo what was done above. Grabs the least significant bits from the image, and puts them back together into a 8 bit brightness value for the pixel. The pixel is then replaced with this value. This results in a image that has noise around a clearish image in the center.
+
+Output:
 
 ![shownbw](assets/shownBW.png)
 
