@@ -16,7 +16,7 @@ I will be focusing on Image Steganography; specifically one version of it: Hidin
 Origin of the word stenography dates back to Ancient Greece, in "stegano" and "grafia", and together this means “secret writing”.
 Ancient Greeks would carve messages on the wood of wax tablets without wax, and then cover the message with wax to make it appear as to no message exists. Romans would also use “invisible ink” to write secret messages on other, less secretive documents.
 
-### My Program: Overview / Purpose:
+### My Program: Overview:
 
 My program is designed to hide an image inside another image by changing the least significant bit in the Red Green and Blue values of a pixel in an image with values, either to make a 8 bit black and white image or a 9 bit color image (3 bits per color channel).
 
@@ -26,13 +26,20 @@ For the purposes of this demonstration, I will be using this image to hide:
 
 And this image as the image that the above image will hide in:
 
-![secret](assets/INPUT.png)
+![shown](assets/INPUT.png)
+
+#### Using the Program:
+
+Use if you are ok with the final image once decoded being black and white.
+flags: _ -i IMAGETOHIDE -h IMAGETOHIDEINPUTIN -o OUPUTFILENAME -m __
+Replace _ with -e or -d.
+Replace __ with COLOR or BW.
+-d does not require you to use -h.
+If you want the image to be displayed use -v
 
 ### Black and White Mode:
 #### Usage:
 Use if you are ok with the final image once decoded being black and white.
-flags: -e -i IMAGETOHIDE -h IMAGETOHIDEINPUTIN -o OUPUTFILENAME -m BW
-if you want the image to be displayed use -v
 
 #### Setup:
 To prepare for black and white image encoding, my program first changes the image to hide into a monochrome image using filter() in processing.
@@ -57,3 +64,26 @@ Output:
 ![shownbw](assets/shownBW.png)
 
 ### Color Mode:
+
+### Usage:
+
+Use this mode if you want specifically color encoding. The output will have worse color depth, having only 3 bits per color instead of the 8 we normally use today.
+
+#### Setup:
+
+Besides centering its position over the image to hide in, the program does nothing else in color mode.
+
+#### Encoding:
+
+In Color mode, the program once again runs over all the pixel the image to be hidden is over. It converts the red, green, and blue into their binary forms. It will then lift the 3 most significant digits and place them in the 3 least significant digits of the image it will be hidden in.
+The program runs this over all pixels covered by the image to hide.
+
+![secret](assets/hiddenCLR.png)
+
+#### Decoding:
+
+To decode, because the values are still in the same channel, it effectively bit shifts the 3 least significant digits to the front, replacing the rest with 0s. This results in an image with a maximum of 512 colors, leaving a bunch of noise from the original image around a clear image in the center.
+
+![secret](assets/shownCLR.png)
+
+
