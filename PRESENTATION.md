@@ -20,6 +20,14 @@ Ancient Greeks would carve messages on the wood of wax tablets without wax, and 
 
 My program is designed to hide an image inside another image by changing the least significant bit in the Red Green and Blue values of a pixel in an image with values, either to make a 8 bit black and white image or a 9 bit color image (3 bits per color channel).
 
+For the purposes of this demonstration, I will be using this image to hide:
+
+![secret](assets/SECRET.png)
+
+And this image as the image that the above image will hide in:
+
+![secret](assets/INPUT.png)
+
 ### Black and White Mode:
 #### Usage:
 Use if you are ok with the final image once decoded being black and white.
@@ -40,6 +48,6 @@ The program continues until all pixels covered by the image to hide are converte
 #### Decoding:
 The program will run over every single pixel and basically undo what was done above. Grabs the least significant bits from the image, and puts them back together into a 8 bit brightness value for the pixel. The pixel is then replaced with this value. This results in a image that has noise around a clearish image in the center.
 
-![Alt text](assets/shownBW.png)
+![shownbw](assets/shownBW.png)
 
 ### Color Mode:
