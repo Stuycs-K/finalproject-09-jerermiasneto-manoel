@@ -1,8 +1,8 @@
 # Image Stenography
 ##### Manoel   
-    
+
 ### What is Stenography?
-Steganography is the practice of hiding a secret message in something that is not secret. 
+Steganography is the practice of hiding a secret message in something that is not secret.
 There are many different forms of stenography in the digital world:
 - Image
 - Video
@@ -20,14 +20,14 @@ Ancient Greeks would carve messages on the wood of wax tablets without wax, and 
 
 My program is designed to hide an image inside another image by changing the least significant bit in the Red Green and Blue values of a pixel in an image with values, either to make a 8 bit black and white image or a 9 bit color image (3 bits per color channel).
 
-### Encode Black and White:
+### Black and White Mode:
 #### Usage:
 Use if you are ok with the final image once decoded being black and white.
 flags: -e -i IMAGETOHIDE -h IMAGETOHIDEINPUTIN -o OUPUTFILENAME -m BW
 if you want the image to be displayed use -v
 
 #### Setup:
-To prepare for black and white image encoding, my program first changes the image to hide into a monochrome image using filter() in processing
+To prepare for black and white image encoding, my program first changes the image to hide into a monochrome image using filter() in processing.
 Then, the image to hide will be centered on top of the image that will appear unchanged at the end.
 
 #### Encoding:
@@ -35,7 +35,11 @@ Then, the program will go over every single pixel of the (now) centered image.
 On each pixel, the program will read the brightness of the pixel and split the 8 bytes into 3 3 byte numbers
 For example, a pixel with a value of 125 (01111101) would become 001 111 101.
 Then, each of the three binary values will be put into the least signigicant bits in the red, green, and blue channels of the image that will appear unchanged.
-The program continues until all pixels are converted.
+The program continues until all pixels covered by the image to hide are converted.
 
 #### Decoding:
-The program will run over 
+The program will run over every single pixel and basically undo what was done above. Grabs the least significant bits from the image, and puts them back together into a 8 bit brightness value for the pixel. The pixel is then replaced with this value. This results in a image that has noise around a clearish image in the center.
+
+![Alt text](assets/shownBW.png)
+
+### Color Mode:
