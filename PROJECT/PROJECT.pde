@@ -129,7 +129,7 @@ void encode(){
     }
   }
   in1.updatePixels();
-  in1.save(Output);
+  in1.save("../"+Output);
 }
 void decode(){
   if(MODE2 == BW){
@@ -144,8 +144,8 @@ void decode(){
       int []valarrb = tobitbw(pixelvalb);
       //getting bits of rgb values
       int[] valarr = new int[9];
-      valarr[1]=valarrr[6];
-      valarr[2]=valarrr[7];
+      valarr[0]=valarrr[6];
+      valarr[1]=valarrr[7];
       valarr[2]=valarrr[8];
       valarr[3]=valarrg[6];
       valarr[4]=valarrg[7];
@@ -181,14 +181,20 @@ void decode(){
     }
   }
   in1.updatePixels();
-  in1.save(Output);
+  in1.save("../"+Output);
 }
 
 
 
 void setup(){
-  in1 = loadImage(InputShown);
-  in2 = loadImage(InputHidden);
+  if(MODE1 == ENCODE){
+    in2 = loadImage(InputHidden);
+    in1 = loadImage(InputShown);
+  }
+  else{
+    in1 = loadImage(InputHidden);
+    in2 = loadImage(InputHidden);
+  }
   windowResize(in1.width, in1.height);
   if(in2.height > in1.height || in2.width > in1.width){
     println("ImageHidden (-i) is larger than ImageShown (-h)");
@@ -207,12 +213,13 @@ void settings() {
     println("no args provided");
     println("flags encode: -e -i IMAGETOHIDE -h IMAGETOHIDEINPUTIN -o OUPUTFILENAME -m MODE");
     println("flags decode: -d -i INPUT -o OUTPUTFILENAME -m MODE");
-    //return;
+    exit();
   }
-  //if(!parseArgs()){
-    //println("parsing failure (bruh)");
-    //return;
-  //}
+  if(!parseArgs()){
+    println("parsing failure (bruh)");
+    exit();
+  }
+  
 }
 
 boolean parseArgs(){
