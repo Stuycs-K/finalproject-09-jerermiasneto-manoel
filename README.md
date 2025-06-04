@@ -22,11 +22,17 @@ To run, use:
 replace _ with the args using the following flags:
 
 -e (encode)
+
 -d (decode)
+
 -i IMAGETOBEHIDDEN / IMAGETODECODE
+
 -h IMAGETOHIDEIN
+
 -o OUTPUTFILENAME
+
 -m MODE (either BW or CLR)
+
 -v (visualize)
 
 example encode prompt:
