@@ -42,7 +42,10 @@ example encode prompt:
 ### Resources/ References:
 
 Mr. K's Website
+
 processing.org (Documentation)
+
 Wikipidia (Image)
+
 Audacity (Image)
 
