@@ -7,15 +7,36 @@ Manoel Jeremias-Neto
 
 ### Project Description:
 
-Create a Processing Project that will hide a black & white image inside of a larger image, as well as reveal hidden messages created with the program.
+Create a Processing Project that will hide a black & white or color image inside of a larger image, as well as reveal hidden messages created with the program.
+
+Video: [Youtube](https://youtu.be/bp6k1qppC8U)
 
 ### Instructions:
 
-How does the user install/compile/run the program. (CHANGE THIS!!!!!)
-How does the user interact with this program? (CHANGE THIS!!!!!)
-(later) -mjn
+Download repository, navigate to it in terminal
+
+To run, use:
+
+`make run ARGS="_"`
+
+replace _ with the args using the following flags:
+
+-e (encode)
+-d (decode)
+-i IMAGETOBEHIDDEN / IMAGETODECODE
+-h IMAGETOHIDEIN
+-o OUTPUTFILENAME
+-m MODE (either BW or CLR)
+-v (visualize)
+
+example encode prompt:
+
+`make run ARGS="-e -i SECRET.png -h INPUT.png -o /secretfolder/ENCODED.png -m BW -v"`
 
 ### Resources/ References:
 
-Mr. K's Encoder / Decoder templates
+Mr. K's Website
 processing.org (Documentation)
+Wikipidia (Image)
+Audacity (Image)
+

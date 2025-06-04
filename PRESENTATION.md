@@ -107,3 +107,5 @@ The main resason to do something like this is obfuscation. If someone doesn't kn
 - `https://www.geeksforgeeks.org/early-evidence-of-steganography/` 
 - `https://konstantinnovation.github.io/cyber.html` 
 - `https://en.wikipedia.org/wiki/List_of_monochrome_and_RGB_color_formats` 
+- `https://forum.audacityteam.org/t/steganography/64990`
+
