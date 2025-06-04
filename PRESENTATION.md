@@ -1,9 +1,9 @@
-# Image Stenography
+# Image Steganography
 ##### Manoel   
 
-### What is Stenography?
+### What is Steganography?
 Steganography is the practice of hiding a secret message in something that is not secret.
-There are many different forms of stenography in the digital world:
+There are many different forms of steganography in the digital world:
 - Image
 - Video
 - Audio
@@ -11,9 +11,9 @@ There are many different forms of stenography in the digital world:
 
 I will be focusing on Image Steganography; specifically one version of it: Hiding an image inside of another image.
 
-### History Of Stenography:
+### History Of Steganography:
 
-Origin of the word stenography dates back to Ancient Greece, in "stegano" and "grafia", and together this means “secret writing”.
+Origin of the word steganography dates back to Ancient Greece, in "stegano" and "grafia", and together this means “secret writing”.
 Ancient Greeks would carve messages on the wood of wax tablets without wax, and then cover the message with wax to make it appear as to no message exists. Romans would also use “invisible ink” to write secret messages on other, less secretive documents.
 
 ### My Program: Overview:
@@ -78,11 +78,15 @@ Besides centering its position over the image to hide in, the program does nothi
 In Color mode, the program once again runs over all the pixel the image to be hidden is over. It converts the red, green, and blue into their binary forms. It will then lift the 3 most significant digits and place them in the 3 least significant digits of the image it will be hidden in.
 The program runs this over all pixels covered by the image to hide.
 
+Output:
+
 ![secret](assets/hiddenCLR.png)
 
 #### Decoding:
 
 To decode, because the values are still in the same channel, it effectively bit shifts the 3 least significant digits to the front, replacing the rest with 0s. This results in an image with a maximum of 512 colors, leaving a bunch of noise from the original image around a clear image in the center.
+
+Output:
 
 ![shownclr](assets/shownCLR.png)
 
