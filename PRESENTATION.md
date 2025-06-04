@@ -94,6 +94,7 @@ Output:
 The brighter the image that you're hiding the other image in is, the more visible the hidden image is (when it shouldn't be)
 This is visible on the encoded examples above.
 Using darker images (where the eye can see less detail) can help mitigate this.
+Also loses detail when used (either B&W or limited color)
 
 ### Usage (Why use this?)
 
