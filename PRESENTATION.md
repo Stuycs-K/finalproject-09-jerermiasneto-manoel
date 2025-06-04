@@ -1,6 +1,8 @@
 # Image Steganography
 ##### Manoel   
 
+Video: [Youtube](https://youtu.be/bp6k1qppC8U)
+
 ### What is Steganography?
 Steganography is the practice of hiding a secret message in something that is not secret.
 There are many different forms of steganography in the digital world:
