@@ -67,7 +67,7 @@ Output:
 
 ### Usage:
 
-Use this mode if you want specifically color encoding. The output will have worse color depth, having only 3 bits per color instead of the 8 we normally use today.
+Use this mode if you want specifically color encoding. The output will have worse color depth, having only 3 bits per color instead of the 8 we normally use.
 
 #### Setup:
 
@@ -84,6 +84,19 @@ The program runs this over all pixels covered by the image to hide.
 
 To decode, because the values are still in the same channel, it effectively bit shifts the 3 least significant digits to the front, replacing the rest with 0s. This results in an image with a maximum of 512 colors, leaving a bunch of noise from the original image around a clear image in the center.
 
-![secret](assets/shownCLR.png)
+![shownclr](assets/shownCLR.png)
 
+### Limitations:
+The brighter the image that you're hiding the other image in is, the more visible the hidden image is (when it shouldn't be)
+This is visible on the encoded examples above.
+Using darker images (where the eye can see less detail) can help mitigate this.
 
+### Usage (Why use this?)
+
+The main resason to do something like this is obfuscation. If someone doesn't know there is a hidden image, they can't do anything about it. Additionally, these technicques could be used with other cybersecurity techniques to increase the security and decrease the chance that someone intercepts whatever you're sending.
+
+### Resources:
+
+`https://www.geeksforgeeks.org/early-evidence-of-steganography/`
+`https://konstantinnovation.github.io/cyber.html`
+`https://en.wikipedia.org/wiki/List_of_monochrome_and_RGB_color_formats`
